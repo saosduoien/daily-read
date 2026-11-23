@@ -23,6 +23,10 @@ function renderHero(issue) {
   }
   const dek = $(".hero-dek");
   if (dek) dek.textContent = issue.excerpt || "精读、词汇、长难句与论证地图，一次读完。";
+  const topIssue = $("#topIssueLabel");
+  if (topIssue) topIssue.textContent = `第 ${issueNo(issue.number)} 期`;
+  const topMinutes = $("#topMinutes");
+  if (topMinutes) topMinutes.textContent = `${String(issue.readingTime).padStart(2, "0")} MIN`;
   const img = $(".hero-art img");
   if (img) {
     img.src = issue.leadImage || issue.cover;
