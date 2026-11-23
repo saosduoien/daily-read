@@ -1,5 +1,6 @@
 > 你的无聊，正在被算法偷走。
 > 2026-11-23 · 001 · 8 min · Nautilus
+> https://nautil.us/defending-our-consciousness-against-the-algorithms-1279260
 
 ![Boredom Is Not Empty.]({{SITE_BASE}}assets/img/issues/001/lead-image.png)
 
