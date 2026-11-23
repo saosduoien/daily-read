@@ -33,7 +33,7 @@ function parseLeadingMeta(md = "") {
   const lines = match[1].split(/\r?\n/)
     .map((line) => line.replace(/^>\s?/, "").trim())
     .filter(Boolean);
-  return { hook: lines[0] || "", meta: lines[1] || "" };
+  return { hook: lines[0] || "", meta: lines[1] || "", sourceUrl: lines[2] || "" };
 }
 
 function imageUrls(md = "") {
@@ -94,6 +94,18 @@ export function extractWords(body = "") {
     .filter((w) => /[A-Za-z]/.test(w.word));
 }
 
+function excerptOf(body = "") {
+  const text = stripHero(body)
+    .replace(/^\s*#{1,6}\s+.*$/gm, " ")
+    .replace(/^\s*!\[[^\]]*\]\([^)]*\)\s*$/gm, " ")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/^\s*[-*]\s+/gm, " ")
+    .replace(/[#>*_`|]/g, " ")
+    .replace(/\s+/g, " ");
+  const parts = text.split(/(?<=[。！？.!?])\s+/).filter((s) => s.trim().length > 24);
+  return (parts[0] || text).trim().slice(0, 118);
+}
+
 function readingTimeOf(meta = "", body = "") {
   const match = meta.match(/(\d+)\s*min/i);
   if (match) return Number(match[1]);
@@ -125,6 +137,7 @@ export function normalizeIssue(raw = {}) {
     labels: (raw.labels || []).map((l) => (typeof l === "string" ? l : l.name)).filter(Boolean),
     hook: raw.hook || leading.hook || "",
     meta: raw.meta || leading.meta || "",
+    sourceUrl: raw.sourceUrl || leading.sourceUrl || "",
     cover,
     leadImage,
     images: raw.images || imageUrls(body),
@@ -132,7 +145,7 @@ export function normalizeIssue(raw = {}) {
     topicLabel: topic.label,
     readingTime: raw.readingTime || readingTimeOf(leading.meta, body),
     source: sourceOf(leading.meta),
-    excerpt: raw.excerpt || "",
+    excerpt: raw.excerpt || excerptOf(body),
     gallery,
     words: raw.words || extractWords(body)
   };
