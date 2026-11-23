@@ -27,6 +27,12 @@ https://api.github.com/repos/saosduoien/daily-read/issues?state=open&per_page=10
 
 An open issue is published automatically. Add a `draft` label to hide it. No rebuild or deploy is needed after publishing.
 
+### Publish from phone
+
+1. Open the GitHub mobile app → `saosduoien/daily-read` → **Issues** → **New issue**.
+2. Paste the template from `/studio.html`; upload a cover and the 9-page images.
+3. Create the issue. The site picks it up within about 20 seconds; refresh once.
+
 ### Issue format
 
 The first two blockquote lines are the hero:
