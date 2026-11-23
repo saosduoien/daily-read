@@ -99,6 +99,8 @@ function renderHeader() {
   if (desc) desc.setAttribute("content", `${issue.title} — ${issue.hook} 英文外刊每日精读第 ${issueNo(issue.number)} 期。`);
   $("#topIssue").textContent = `ISSUE ${issueNo(issue.number)}`;
   $("#topRead").textContent = `${issue.readingTime} MIN READ`;
+  const footerLabel = $("#issueFooterLabel");
+  if (footerLabel) footerLabel.textContent = `THE DAILY READ · ISSUE ${issueNo(issue.number)}`;
   $("#issueKicker").innerHTML = `ISSUE ${issueNo(issue.number)} <span>·</span> ${escapeHtml(issue.topicLabel).toUpperCase()} <span>·</span> ${formatDate(issue.createdAt)}`;
   $("#issueTitle").textContent = issue.title;
   $("#issueHook").textContent = issue.hook || "今天，读一篇值得留下来的外刊。";
@@ -113,6 +115,11 @@ function renderHeader() {
   }
   $("#issueCredit").textContent = `IMAGE / ${issue.source.toUpperCase()}`;
   $("#sourceMeta").innerHTML = `${escapeHtml(issue.source)}<br>${formatDate(issue.createdAt, "long")}<br>${issue.meta ? escapeHtml(issue.meta) : ""}`;
+  const original = $("#originalLink");
+  if (original) {
+    if (issue.sourceUrl) original.href = issue.sourceUrl;
+    else original.style.display = "none";
+  }
   $("#railMeta").innerHTML = `${issue.readingTime} min · ${escapeHtml(issue.topicLabel)}<br>读到 88% 会自动记为已读。`;
 }
 
@@ -243,11 +250,9 @@ async function init() {
       : issues[0];
 
     renderHeader();
-    const toc = enhanceArticle(article, issue);
     article.innerHTML = articleHtml(issue);
-    // enhance must run after html is injected
-    const realToc = enhanceArticle(article, issue);
-    renderToc(realToc.length ? realToc : toc);
+    const toc = enhanceArticle(article, issue);
+    renderToc(toc);
     wireActions();
     renderNav(issues);
     gallery = issue.gallery || [];
