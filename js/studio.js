@@ -13,6 +13,7 @@ function buildTemplate() {
   const n = CFG.nextIssue?.number || "002";
   return `> 一句中文钩子：这篇文章为什么值得读？
 > ${date} · ${n} · 8 min · Nautilus
+> https://原文链接
 
 ![封面](PASTE_COVER_URL)
 
