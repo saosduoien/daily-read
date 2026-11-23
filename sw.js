@@ -1,4 +1,4 @@
-const VERSION = "daily-read-v1.0.0";
+const VERSION = "daily-read-v1.0.1";
 const SHELL = [
   "./",
   "./index.html",
@@ -45,6 +45,13 @@ self.addEventListener("activate", (event) => {
   );
 });
 
+function cachePut(request, response) {
+  if (!response || !response.ok) return response;
+  const copy = response.clone();
+  caches.open(VERSION).then((cache) => cache.put(request, copy));
+  return response;
+}
+
 self.addEventListener("fetch", (event) => {
   const req = event.request;
   if (req.method !== "GET") return;
@@ -52,35 +59,36 @@ self.addEventListener("fetch", (event) => {
 
   if (url.hostname === "api.github.com") {
     event.respondWith(
-      fetch(req).then((res) => {
-        if (res.ok) {
-          const copy = res.clone();
-          caches.open(VERSION).then((cache) => cache.put(req, copy));
-        }
-        return res;
-      }).catch(() => caches.match(req))
+      fetch(req).then((res) => cachePut(req, res)).catch(() => caches.match(req))
     );
     return;
   }
 
   if (req.mode === "navigate") {
     event.respondWith(
-      fetch(req).then((res) => {
-        const copy = res.clone();
-        caches.open(VERSION).then((cache) => cache.put(req, copy));
-        return res;
-      }).catch(async () => (await caches.match(req)) || caches.match("./index.html"))
+      fetch(req).then((res) => cachePut(req, res))
+        .catch(async () => (await caches.match(req)) || caches.match("./index.html"))
+    );
+    return;
+  }
+
+  if (req.destination === "script" || req.destination === "style") {
+    event.respondWith(
+      fetch(req).then((res) => cachePut(req, res))
+        .catch(() => caches.match(req))
     );
     return;
   }
 
   event.respondWith(
-    caches.match(req).then((hit) => hit || fetch(req).then((res) => {
-      if (res.ok && (url.origin === location.origin || url.hostname.includes("githubusercontent"))) {
-        const copy = res.clone();
-        caches.open(VERSION).then((cache) => cache.put(req, copy));
-      }
-      return res;
-    }))
+    caches.match(req).then((hit) => {
+      if (hit) return hit;
+      return fetch(req).then((res) => {
+        if (res.ok && (url.origin === location.origin || url.hostname.includes("githubusercontent"))) {
+          cachePut(req, res);
+        }
+        return res;
+      });
+    })
   );
 });
