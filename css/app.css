@@ -876,3 +876,17 @@ html[data-theme="night"] .continue { background: rgba(255, 255, 255, .02); }
 .hero-copy { width: 100%; }
 @media (max-width: 900px) { .topbar { flex-wrap: wrap; } .topbar .top-actions { flex-wrap: wrap; } .hero h1 { max-width: 100%; overflow-wrap: break-word; } }
 
+
+.article h2 { scroll-margin-top: 82px; }
+.article p, .article li { overflow-wrap: break-word; }
+
+
+.article table { table-layout: fixed; }
+.article table:first-of-type th:nth-child(1), .article table:first-of-type td:nth-child(1) { width: 44%; }
+.article table:first-of-type th:nth-child(2), .article table:first-of-type td:nth-child(2) { width: 22%; }
+.article table:first-of-type th:nth-child(3), .article table:first-of-type td:nth-child(3) { width: 34%; }
+.vocab-table th:nth-child(1), .vocab-table td:nth-child(1) { width: 24%; }
+.vocab-table th:nth-child(2), .vocab-table td:nth-child(2) { width: 20%; }
+.vocab-table th:nth-child(3), .vocab-table td:nth-child(3) { width: 30%; }
+.vocab-table th:nth-child(4), .vocab-table td:nth-child(4) { width: 26%; }
+
