@@ -98,7 +98,8 @@ function renderHeader() {
   const desc = document.querySelector('meta[name="description"]');
   if (desc) desc.setAttribute("content", `${issue.title} — ${issue.hook} 英文外刊每日精读第 ${issueNo(issue.number)} 期。`);
   $("#topIssue").textContent = `ISSUE ${issueNo(issue.number)}`;
-  $("#topRead").textContent = `${issue.readingTime} MIN READ`;
+  const topRead = $("#topRead");
+  if (topRead) topRead.textContent = `${issue.readingTime} MIN READ`;
   const footerLabel = $("#issueFooterLabel");
   if (footerLabel) footerLabel.textContent = `THE DAILY READ · ISSUE ${issueNo(issue.number)}`;
   $("#issueKicker").innerHTML = `ISSUE ${issueNo(issue.number)} <span>·</span> ${escapeHtml(issue.topicLabel).toUpperCase()} <span>·</span> ${formatDate(issue.createdAt)}`;
