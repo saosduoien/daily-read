@@ -7,3 +7,7 @@ _notes/
 inspect_mobile.py
 shot_mobile.py
 
+debug*.py
+test_*.py
+fix_issue.py
+
