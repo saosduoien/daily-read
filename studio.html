@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101820">
+  <meta name="description" content="The Daily Read 发布台：在手机上用 GitHub Issues 发布新一期英文外刊精读。">
+  <title>Studio · The Daily Read</title>
+  <script>
+    try {
+      const t = JSON.parse(localStorage.getItem('dr_v1_theme') || '"paper"');
+      document.documentElement.dataset.theme = t === 'night' ? 'night' : 'paper';
+    } catch (e) {}
+  </script>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./assets/icons/icon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./css/app.css">
+</head>
+<body data-page="studio">
+  <a class="skip" href="#main">跳到正文</a>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="brand" href="./index.html" aria-label="The Daily Read 首页">
+        <span class="brand-mark">DR</span>
+        <span class="brand-type">THE DAILY READ<small>每日精读</small></span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a class="nav-item" data-nav="home" href="./index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19V5h16v14H4zM8 9h8M8 13h5"/></svg>
+          <span>Today</span><small>今日</small>
+        </a>
+        <a class="nav-item" data-nav="archive" href="./archive.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16v13H4zM4 7l2-3h12l2 3M9 11h6"/></svg>
+          <span>Archive</span><small>档案</small>
+        </a>
+        <a class="nav-item" data-nav="wordbook" href="./wordbook.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 4h12v16l-6-3-6 3V4z"/></svg>
+          <span>Wordbook</span><small>词书</small>
+        </a>
+        <a class="nav-item" data-nav="studio" href="./studio.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4zM14 6l3 3"/></svg>
+          <span>Studio</span><small>发布</small>
+        </a>
+      </nav>
+      <div class="side-streak">
+        <div class="side-label">READING STREAK</div>
+        <div class="streak-big"><b data-streak>0</b><span>days</span></div>
+        <div class="dot-grid" data-dots aria-label="最近 14 天阅读记录"></div>
+      </div>
+      <div class="side-bottom">
+        <button class="side-btn" type="button" data-theme-toggle>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 14.5A8 8 0 0 1 9.5 4 8.2 8.2 0 1 0 20 14.5z"/></svg>
+          <span data-theme-label>Night reading</span>
+        </button>
+        <button class="side-btn" type="button" data-install>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 19h14"/></svg>
+          <span>Install app</span>
+        </button>
+        <a class="side-note" href="./studio.html">How to publish <b>→</b></a>
+      </div>
+    </aside>
+
+    <div class="shell">
+      <header class="mobile-top">
+        <a class="brand" href="./index.html">
+          <span class="brand-mark">DR</span>
+          <span class="brand-type">THE DAILY READ<small>每日精读</small></span>
+        </a>
+        <div class="top-actions">
+          <button class="icon-btn" type="button" data-theme-toggle aria-label="切换夜间阅读">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 14.5A8 8 0 0 1 9.5 4 8.2 8.2 0 1 0 20 14.5z"/></svg>
+          </button>
+          <button class="icon-btn" type="button" data-install aria-label="安装应用">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 19h14"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="page" id="main">
+        <div class="topbar">
+          <div class="date"><b data-today>MONDAY, NOV 23</b> &nbsp;·&nbsp; PUBLISH DESK</div>
+          <div class="top-actions"><span class="pill accent" id="repoStatus">CONNECTING…</span></div>
+        </div>
+
+        <header class="page-head">
+          <div class="eyebrow">PUBLISH DESK · 发布台</div>
+          <h1>Publish a<br>new issue.</h1>
+          <p class="cn">新建一条 issue，就是新的一期。不需要服务器，不需要重新部署。</p>
+          <div class="studio-actions">
+            <a class="btn primary" id="newIssue" href="#" target="_blank" rel="noopener">
+              打开 GitHub 新建 Issue
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </a>
+            <button class="btn ghost" type="button" id="copyTemplate">复制本期模板</button>
+            <a class="btn ghost" id="repoLink" href="#" target="_blank" rel="noopener">打开仓库</a>
+          </div>
+        </header>
+
+        <div class="studio-grid">
+          <section>
+            <div class="section-head" style="margin-top:0"><h2>From phone to live.</h2><span style="font:500 9px var(--mono);color:var(--muted)">3 STEPS</span></div>
+            <div class="step-list">
+              <div class="step">
+                <div class="n">1</div>
+                <div>
+                  <h3>在 GitHub App 里新建 Issue</h3>
+                  <p>打开仓库 <b>daily-read</b> → Issues → New issue。标题写英文标题，正文粘贴下面的模板。</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="n">2</div>
+                <div>
+                  <h3>把图片直接上传进 Issue</h3>
+                  <p>封面和 9 页图文都可以从相册上传；GitHub 会自动生成图片链接。网站会自动把第一张图当作封面，把“9 页图文版”下的图收进画廊。</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="n">3</div>
+                <div>
+                  <h3>Create issue，网站自动更新</h3>
+                  <p>新建即发布。想先存草稿，就给 issue 加一个 <b>draft</b> 标签；网站会忽略它。手机刷新页面即可看到新一期。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="checklist">
+              <h3>BEFORE YOU PUBLISH / 发布前</h3>
+              <div class="check-item"><span class="box"></span><span>标题是英文，6–10 个词，最好是一个可被反驳的判断。</span></div>
+              <div class="check-item"><span class="box"></span><span>正文开头两行 blockquote：第一行中文钩子，第二行日期 · 期号 · 阅读时长 · 来源。</span></div>
+              <div class="check-item"><span class="box"></span><span>至少一张封面图；9 页图文放在“## 9 页图文版”下面。</span></div>
+              <div class="check-item"><span class="box"></span><span>“## 词汇”下保留表格，网站会自动生成“加入词书”按钮。</span></div>
+              <div class="check-item"><span class="box"></span><span>用手机打开网站，确认图片和排版正常；必要时加 draft 修好再发。</span></div>
+            </div>
+          </section>
+
+          <section>
+            <div class="section-head" style="margin-top:0"><h2>The template.</h2><span style="font:500 9px var(--mono);color:var(--muted)">MARKDOWN</span></div>
+            <div class="template-box">
+              <pre id="template">正在生成模板…</pre>
+            </div>
+            <p style="margin:9px 0 0;font:400 11px/1.6 var(--sans);color:var(--muted)">模板里的图片链接可以先留空；在 GitHub Issue 编辑器里直接上传图片，再把链接粘到对应位置即可。</p>
+          </section>
+        </div>
+
+        <footer style="margin-top:34px;padding-top:14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:400 10px var(--mono);letter-spacing:.06em;color:var(--muted);text-transform:uppercase">
+          <span>CONTENT SOURCE · GITHUB ISSUES</span>
+          <a href="./archive.html" style="color:var(--accent)">VIEW ARCHIVE →</a>
+        </footer>
+      </main>
+
+      <nav class="bottom-nav" aria-label="移动端导航">
+        <a data-nav="home" href="./index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19V5h16v14H4zM8 9h8M8 13h5"/></svg>
+          <span>Today</span>
+        </a>
+        <a data-nav="archive" href="./archive.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16v13H4zM4 7l2-3h12l2 3M9 11h6"/></svg>
+          <span>Archive</span>
+        </a>
+        <a data-nav="wordbook" href="./wordbook.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 4h12v16l-6-3-6 3V4z"/></svg>
+          <span>Words</span>
+        </a>
+        <a data-nav="studio" href="./studio.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4zM14 6l3 3"/></svg>
+          <span>Studio</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="modal" id="modal" aria-hidden="true"><div class="modal-inner"></div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="./js/config.js"></script>
+  <script src="./assets/vendor/marked.umd.js"></script>
+  <script src="./assets/vendor/purify.min.js"></script>
+  <script type="module" src="./js/app.js"></script>
+  <script type="module" src="./js/studio.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{
+  "name": "The Daily Read · 每日精读",
+  "short_name": "Daily Read",
+  "description": "每天一篇英文外刊，精读、词汇、长难句与论证地图。",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#F3EBDD",
+  "theme_color": "#101820",
+  "lang": "zh-CN",
+  "categories": ["education", "productivity", "news"],
+  "icons": [
+    {
+      "src": "./assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101820">
+  <meta name="description" content="Boredom Is Not Empty. 英文外刊每日精读第 001 期：注意力、算法与无聊。">
+  <title>Boredom Is Not Empty. · The Daily Read</title>
+  <script>
+    try {
+      const t = JSON.parse(localStorage.getItem('dr_v1_theme') || '"paper"');
+      document.documentElement.dataset.theme = t === 'night' ? 'night' : 'paper';
+    } catch (e) {}
+  </script>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./assets/icons/icon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./css/app.css">
+</head>
+<body data-page="home">
+  <a class="skip" href="#main">跳到正文</a>
+  <div class="reading-progress"><i id="readBar"></i></div>
+
+  <div class="app">
+    <aside class="sidebar">
+      <a class="brand" href="./index.html" aria-label="The Daily Read 首页">
+        <span class="brand-mark">DR</span>
+        <span class="brand-type">THE DAILY READ<small>每日精读</small></span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a class="nav-item" data-nav="home" href="./index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19V5h16v14H4zM8 9h8M8 13h5"/></svg>
+          <span>Today</span><small>今日</small>
+        </a>
+        <a class="nav-item" data-nav="archive" href="./archive.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16v13H4zM4 7l2-3h12l2 3M9 11h6"/></svg>
+          <span>Archive</span><small>档案</small>
+        </a>
+        <a class="nav-item" data-nav="wordbook" href="./wordbook.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 4h12v16l-6-3-6 3V4z"/></svg>
+          <span>Wordbook</span><small>词书</small>
+        </a>
+        <a class="nav-item" data-nav="studio" href="./studio.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4zM14 6l3 3"/></svg>
+          <span>Studio</span><small>发布</small>
+        </a>
+      </nav>
+      <div class="side-streak">
+        <div class="side-label">READING STREAK</div>
+        <div class="streak-big"><b data-streak>0</b><span>days</span></div>
+        <div class="dot-grid" data-dots aria-label="最近 14 天阅读记录"></div>
+      </div>
+      <div class="side-bottom">
+        <button class="side-btn" type="button" data-theme-toggle>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 14.5A8 8 0 0 1 9.5 4 8.2 8.2 0 1 0 20 14.5z"/></svg>
+          <span data-theme-label>Night reading</span>
+        </button>
+        <button class="side-btn" type="button" data-install>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 19h14"/></svg>
+          <span>Install app</span>
+        </button>
+        <a class="side-note" href="./studio.html">How to publish <b>→</b></a>
+      </div>
+    </aside>
+
+    <div class="shell">
+      <header class="mobile-top">
+        <a class="brand" href="./index.html">
+          <span class="brand-mark">DR</span>
+          <span class="brand-type">THE DAILY READ<small>每日精读</small></span>
+        </a>
+        <div class="top-actions">
+          <button class="icon-btn" type="button" data-theme-toggle aria-label="切换夜间阅读">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 14.5A8 8 0 0 1 9.5 4 8.2 8.2 0 1 0 20 14.5z"/></svg>
+          </button>
+          <button class="icon-btn" type="button" data-install aria-label="安装应用">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 19h14"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="issue-page" id="main">
+        <div class="topbar">
+          <div class="date"><a href="./index.html" style="color:var(--muted)">← TODAY</a> &nbsp;·&nbsp; <b id="topIssue">ISSUE 001</b></div>
+          <div class="top-actions">
+            <span class="pill" id="topRead">8 MIN READ</span>
+            <button class="icon-btn" type="button" id="shareBtn" aria-label="分享这一期">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16V4m0 0L8 8m4-4l4 4M5 14v5h14v-5"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <header class="issue-head">
+          <div class="kicker" id="issueKicker">ISSUE 001 <span>·</span> ATTENTION <span>·</span> 2026.11.23</div>
+          <h1 id="issueTitle">Boredom Is Not Empty.</h1>
+          <p class="hook" id="issueHook">你的无聊，正在被算法偷走。</p>
+          <div class="meta" id="issueMeta">
+            <span class="pill">NAUTILUS</span>
+            <span class="pill">MICHAEL POLLAN</span>
+            <span class="pill accent">考研 + / C1</span>
+          </div>
+        </header>
+
+        <figure class="issue-cover">
+          <img id="issueCover" src="./assets/img/issues/001/lead-image.png" alt="Boredom Is Not Empty 文章原图" width="1080" height="648">
+          <figcaption><span id="issueCaption">LEAD IMAGE / 文章原图</span><span id="issueCredit">NUTHAWUT · ADOBE STOCK / NAUTILUS</span></figcaption>
+        </figure>
+
+        <div class="reading-grid">
+          <article class="article" id="article">
+            <div class="skeleton" style="height:20px;width:34%;margin-bottom:18px"></div>
+            <div class="skeleton" style="height:16px;width:100%;margin-bottom:10px"></div>
+            <div class="skeleton" style="height:16px;width:92%;margin-bottom:10px"></div>
+            <div class="skeleton" style="height:16px;width:78%;margin-bottom:28px"></div>
+            <div class="skeleton" style="height:120px;width:100%"></div>
+            <noscript><p>请开启 JavaScript 阅读网页版，或直接查看 <a href="./assets/img/issues/001/01-封面.png">9 页图文版</a>。</p></noscript>
+          </article>
+
+          <aside class="rail" aria-label="阅读工具">
+            <div class="rail-block toc-block">
+              <div class="rail-title">ON THIS PAGE</div>
+              <div class="toc" id="toc"></div>
+            </div>
+            <div class="rail-block">
+              <div class="rail-title">READING</div>
+              <div class="progress-ring" id="ring" style="--p:0"><span id="ringPct">0%</span></div>
+              <div class="rail-meta" id="railMeta">读到 88% 会自动记为已读。</div>
+              <div class="rail-actions">
+                <button class="btn small ghost" type="button" id="markRead">标记为已读</button>
+                <button class="btn small ghost" type="button" id="openGallery">看 9 页图文</button>
+                <button class="btn small ghost" type="button" id="copyLink">复制链接</button>
+              </div>
+            </div>
+            <div class="rail-block">
+              <div class="rail-title">SOURCE</div>
+              <div class="rail-meta" id="sourceMeta">Nautilus<br>Michael Pollan<br>2026.04.18</div>
+            </div>
+            <div class="issue-nav" id="issueNav"></div>
+          </aside>
+        </div>
+
+        <section class="gallery-wrap" id="galleryWrap" hidden>
+          <div class="gallery-head">
+            <h3>9 页图文版</h3>
+            <span>SWIPE · TAP TO ZOOM</span>
+          </div>
+          <div class="gallery" id="gallery"></div>
+        </section>
+
+        <footer style="margin-top:40px;padding-top:14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:400 10px var(--mono);letter-spacing:.06em;color:var(--muted);text-transform:uppercase">
+          <span>THE DAILY READ · ISSUE 001</span>
+          <a href="./archive.html" style="color:var(--accent)">ALL ISSUES →</a>
+        </footer>
+      </main>
+
+      <nav class="bottom-nav" aria-label="移动端导航">
+        <a data-nav="home" href="./index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19V5h16v14H4zM8 9h8M8 13h5"/></svg>
+          <span>Today</span>
+        </a>
+        <a data-nav="archive" href="./archive.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16v13H4zM4 7l2-3h12l2 3M9 11h6"/></svg>
+          <span>Archive</span>
+        </a>
+        <a data-nav="wordbook" href="./wordbook.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 4h12v16l-6-3-6 3V4z"/></svg>
+          <span>Words</span>
+        </a>
+        <a data-nav="studio" href="./studio.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l4-1L19 8l-3-3L5 16l-1 4zM14 6l3 3"/></svg>
+          <span>Studio</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="modal" id="modal" aria-hidden="true"><div class="modal-inner"></div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="./js/config.js"></script>
+  <script src="./assets/vendor/marked.umd.js"></script>
+  <script src="./assets/vendor/purify.min.js"></script>
+  <script type="module" src="./js/app.js"></script>
+  <script type="module" src="./js/issue.js"></script>
+</body>
+</html>

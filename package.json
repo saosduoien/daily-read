@@ -1,0 +1,14 @@
+{
+  "name": "the-daily-read",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A personal daily English reading desk.",
+  "scripts": {
+    "start": "python -m http.server 4173",
+    "serve": "python -m http.server 4173"
+  },
+  "dependencies": {
+    "dompurify": "^3.5.0",
+    "marked": "^18.2.1"
+  }
+}
