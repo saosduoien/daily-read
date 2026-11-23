@@ -1,7 +1,7 @@
 import { Store, dateKey } from "./store.js";
 
 const CFG = window.DR_CONFIG || {};
-const CACHE_MS = 5 * 60 * 1000;
+const CACHE_MS = 20 * 1000;
 
 export function issueNo(n) {
   return String(n || 0).padStart(3, "0");
