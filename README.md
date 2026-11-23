@@ -1,5 +1,7 @@
 # THE DAILY READ / 每日精读
 
+**Live:** https://saosduoien.github.io/daily-read/
+
 A personal daily English reading desk. 第一期：Michael Pollan, *Boredom Is Not Empty.*
 
 ## What this is
