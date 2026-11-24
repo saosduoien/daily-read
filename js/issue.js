@@ -152,6 +152,11 @@ function showGallery(index) {
 function renderGallery() {
   if (!gallery.length || !galleryMount || !galleryWrap) return;
   galleryWrap.hidden = false;
+  const count = gallery.length;
+  const heading = $(".gallery-head h3");
+  if (heading) heading.textContent = count >= 9 ? "9 页图文版" : `${count} 页图文`;
+  const openBtn = $("#openGallery");
+  if (openBtn) openBtn.textContent = `看 ${count} 页图文`;
   galleryMount.innerHTML = gallery.map((src, i) => `
     <button type="button" aria-label="查看第 ${i + 1} 页">
       <img src="${src}" alt="${escapeHtml(issue.title)} 第 ${i + 1} 页" loading="lazy">
