@@ -32,6 +32,8 @@ function renderHero(issue) {
     img.src = issue.leadImage || issue.cover;
     img.alt = issue.title;
   }
+  const credit = $("#heroCredit");
+  if (credit) credit.textContent = (issue.source || "THE DAILY READ").toUpperCase();
   const stamp = $(".issue-stamp");
   if (stamp) {
     stamp.innerHTML = `<b>${issueNo(issue.number)}</b>${escapeHtml(issue.topicLabel).toUpperCase()} / ${formatDate(issue.createdAt)}`;
@@ -48,6 +50,10 @@ function renderHero(issue) {
   if (read) read.href = `./issue.html?n=${issue.number}`;
   const carousel = $(".hero-actions a:nth-child(2)");
   if (carousel) carousel.href = `./issue.html?n=${issue.number}#gallery`;
+  const galleryLabel = $("#heroGalleryLabel");
+  if (galleryLabel) {
+    galleryLabel.textContent = issue.gallery?.length ? `看 ${issue.gallery.length} 页图文` : "看图文版";
+  }
   const pct = progressOf(issue.number);
   const bar = $("#heroProgress");
   if (bar) bar.style.width = `${pct}%`;
