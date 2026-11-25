@@ -96,13 +96,13 @@ function escapeHtml(value = "") {
 function renderHeader() {
   document.title = `${issue.title} · The Daily Read`;
   const desc = document.querySelector('meta[name="description"]');
-  if (desc) desc.setAttribute("content", `${issue.title} — ${issue.hook} 英文外刊每日精读第 ${issueNo(issue.number)} 期。`);
-  $("#topIssue").textContent = `ISSUE ${issueNo(issue.number)}`;
+  if (desc) desc.setAttribute("content", `${issue.title} — ${issue.hook} 英文外刊每日精读第 ${issueNo(issue.series)} 期。`);
+  $("#topIssue").textContent = `ISSUE ${issueNo(issue.series)}`;
   const topRead = $("#topRead");
   if (topRead) topRead.textContent = `${issue.readingTime} MIN READ`;
   const footerLabel = $("#issueFooterLabel");
-  if (footerLabel) footerLabel.textContent = `THE DAILY READ · ISSUE ${issueNo(issue.number)}`;
-  $("#issueKicker").innerHTML = `ISSUE ${issueNo(issue.number)} <span>·</span> ${escapeHtml(issue.topicLabel).toUpperCase()} <span>·</span> ${formatDate(issue.createdAt)}`;
+  if (footerLabel) footerLabel.textContent = `THE DAILY READ · ISSUE ${issueNo(issue.series)}`;
+  $("#issueKicker").innerHTML = `ISSUE ${issueNo(issue.series)} <span>·</span> ${escapeHtml(issue.topicLabel).toUpperCase()} <span>·</span> ${formatDate(issue.createdAt)}`;
   $("#issueTitle").textContent = issue.title;
   $("#issueHook").textContent = issue.hook || "今天，读一篇值得留下来的外刊。";
   $("#issueMeta").innerHTML = `
