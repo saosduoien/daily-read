@@ -24,7 +24,7 @@ function renderHero(issue) {
   const dek = $(".hero-dek");
   if (dek) dek.textContent = issue.excerpt || "精读、词汇、长难句与论证地图，一次读完。";
   const topIssue = $("#topIssueLabel");
-  if (topIssue) topIssue.textContent = `第 ${issueNo(issue.number)} 期`;
+  if (topIssue) topIssue.textContent = `第 ${issueNo(issue.series)} 期`;
   const topMinutes = $("#topMinutes");
   if (topMinutes) topMinutes.textContent = `${String(issue.readingTime).padStart(2, "0")} MIN`;
   const img = $(".hero-art img");
@@ -36,7 +36,7 @@ function renderHero(issue) {
   if (credit) credit.textContent = (issue.source || "THE DAILY READ").toUpperCase();
   const stamp = $(".issue-stamp");
   if (stamp) {
-    stamp.innerHTML = `<b>${issueNo(issue.number)}</b>${escapeHtml(issue.topicLabel).toUpperCase()} / ${formatDate(issue.createdAt)}`;
+    stamp.innerHTML = `<b>${issueNo(issue.series)}</b>${escapeHtml(issue.topicLabel).toUpperCase()} / ${formatDate(issue.createdAt)}`;
   }
   const meta = $(".hero-meta");
   if (meta) {
@@ -70,7 +70,7 @@ function renderRecent(issues) {
       <a class="issue-card" href="./issue.html?n=${issue.number}">
         <div class="cover">
           <img src="${escapeHtml(issue.cover)}" alt="${escapeHtml(issue.title)}" loading="lazy">
-          <span class="tag">NO. ${issueNo(issue.number)}</span>
+          <span class="tag">NO. ${issueNo(issue.series)}</span>
         </div>
         <div class="body">
           <div class="kicker"><b>${escapeHtml(issue.topicLabel).toUpperCase()}</b><span>·</span><span>${formatDate(issue.createdAt)}</span></div>
