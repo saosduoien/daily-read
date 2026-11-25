@@ -13,7 +13,7 @@ function card(issue) {
     <a class="archive-card" href="./issue.html?n=${issue.number}">
       <img src="${escapeHtml(issue.cover)}" alt="${escapeHtml(issue.title)}" loading="lazy">
       <div class="body">
-        <div class="kicker"><b>NO. ${issueNo(issue.number)}</b> &nbsp;·&nbsp; ${escapeHtml(issue.topicLabel).toUpperCase()} &nbsp;·&nbsp; ${formatDate(issue.createdAt)}</div>
+        <div class="kicker"><b>NO. ${issueNo(issue.series)}</b> &nbsp;·&nbsp; ${escapeHtml(issue.topicLabel).toUpperCase()} &nbsp;·&nbsp; ${formatDate(issue.createdAt)}</div>
         <h3>${escapeHtml(issue.title)}</h3>
         <p>${escapeHtml(issue.hook || issue.excerpt || "")}</p>
         <div class="foot">
