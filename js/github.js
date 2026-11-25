@@ -33,7 +33,14 @@ function parseLeadingMeta(md = "") {
   const lines = match[1].split(/\r?\n/)
     .map((line) => line.replace(/^>\s?/, "").trim())
     .filter(Boolean);
-  return { hook: lines[0] || "", meta: lines[1] || "", sourceUrl: lines[2] || "" };
+  const meta = lines[1] || "";
+  const seriesToken = meta.split("·").map((s) => s.trim()).find((s) => /^\d{1,3}$/.test(s));
+  return {
+    hook: lines[0] || "",
+    meta,
+    sourceUrl: lines[2] || "",
+    series: seriesToken ? Number(seriesToken) : null
+  };
 }
 
 function imageUrls(md = "") {
@@ -126,9 +133,11 @@ export function normalizeIssue(raw = {}) {
   const leadImage = raw.leadImage || firstImage(body) || cover;
   const topic = topicOf(raw.labels || []);
   const createdAt = raw.created_at || raw.createdAt || new Date().toISOString();
+  const series = Number(raw.series || leading.series || raw.number || 1);
   return {
     id: String(raw.number || raw.id || 1),
     number: Number(raw.number || 1),
+    series,
     title: raw.title || "Untitled",
     body,
     createdAt,
