@@ -5,10 +5,10 @@ window.DR_CONFIG = {
   siteBase: "https://saosduoien.github.io/daily-read/",
   repoUrl: "https://github.com/saosduoien/daily-read",
   nextIssue: {
-    number: "003",
-    title: "为什么我们记不住三天前的午饭？",
-    topic: "记忆",
-    date: "2026-11-25"
+    number: "004",
+    title: "睡眠如何改写记忆？",
+    topic: "睡眠",
+    date: "2026-11-26"
   },
   topics: {
     attention: "注意力",
